@@ -3,19 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="SecondChance">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#1a1a2e">
-    <meta name="description" content="Buy & Sell Second-Hand Items - Kenya's Premium Marketplace">
-    
     <title>SecondChance • Buy & Sell</title>
-    
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231a1a2e'/><text x='50' y='68' font-size='55' text-anchor='middle' fill='%23c9a84c'>S</text></svg>">
     <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect width='180' height='180' rx='40' fill='%231a1a2e'/><text x='90' y='115' font-size='100' text-anchor='middle' fill='%23c9a84c'>S</text></svg>">
-    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -35,38 +30,30 @@
         body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); transition:var(--transition); display:flex; flex-direction:column; height:100vh; }
         .app-container { display:flex; flex-direction:column; height:100%; max-width:480px; margin:0 auto; width:100%; background:var(--bg); }
         @media(min-width:481px){.app-container{border-left:1px solid var(--border);border-right:1px solid var(--border);box-shadow:0 0 60px rgba(0,0,0,0.1);}}
-        
-        .top-header { background:var(--surface); padding:10px 16px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--border); flex-shrink:0; }
+        .top-header { background:var(--surface); padding:10px 16px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--border); flex-shrink:0; z-index:10; }
         .logo { font-family:'Playfair Display',serif; font-size:1.3rem; font-weight:900; color:var(--primary); }
         .logo span { color:var(--gold); }
         .header-actions { display:flex; gap:6px; align-items:center; }
         .icon-btn { width:36px; height:36px; border-radius:50%; border:none; background:transparent; cursor:pointer; font-size:1.1rem; display:flex; align-items:center; justify-content:center; color:var(--text); position:relative; }
-        .icon-btn:active { transform:scale(0.9); }
         .cart-dot { position:absolute; top:6px; right:6px; width:8px; height:8px; border-radius:50%; background:var(--danger); display:none; }
         .cart-dot.show { display:block; }
-        .status-badge { padding:4px 10px; border-radius:12px; font-size:0.65rem; font-weight:700; }
-        .status-pending { background:rgba(217,119,6,0.2); color:var(--warning); }
-        .status-approved { background:rgba(5,150,105,0.2); color:var(--success); }
         .search-bar { padding:8px 16px; flex-shrink:0; background:var(--bg); }
         .search-input-wrap { display:flex; align-items:center; background:var(--surface); border:1px solid var(--border); border-radius:24px; overflow:hidden; }
         .search-input-wrap input { border:none; padding:10px 14px; flex:1; background:transparent; color:var(--text); outline:none; font-size:0.85rem; font-family:inherit; }
-        .search-input-wrap button { background:none; border:none; padding:10px 14px; cursor:pointer; color:var(--text-secondary); }
-        .main-scroll { flex:1; overflow-y:auto; overflow-x:hidden; padding-bottom:8px; }
-        .bottom-nav { background:var(--surface); border-top:1px solid var(--border); display:flex; justify-content:space-around; padding:6px 4px calc(6px+var(--safe-bottom)); flex-shrink:0; box-shadow:0 -2px 8px rgba(0,0,0,0.04); }
-        .nav-item { display:flex; flex-direction:column; align-items:center; gap:2px; background:none; border:none; color:var(--text-secondary); font-size:0.6rem; font-weight:500; cursor:pointer; padding:6px 4px; border-radius:10px; font-family:inherit; min-width:48px; }
+        .main-scroll { flex:1; overflow-y:auto; overflow-x:hidden; padding-bottom:8px; -webkit-overflow-scrolling:touch; -ms-overflow-style:none; scrollbar-width:none; }
+        .main-scroll::-webkit-scrollbar { display:none; }
+        .bottom-nav { background:var(--surface); border-top:2px solid var(--border); display:flex; justify-content:space-around; padding:8px 4px calc(8px+var(--safe-bottom)); flex-shrink:0; box-shadow:0 -2px 8px rgba(0,0,0,0.1); z-index:10; }
+        .nav-item { display:flex; flex-direction:column; align-items:center; gap:3px; background:none; border:none; color:var(--text-secondary); font-size:0.6rem; font-weight:500; cursor:pointer; padding:8px 4px; border-radius:10px; font-family:inherit; min-width:52px; transition:var(--transition); }
         .nav-item.active { color:var(--gold); font-weight:700; }
         .nav-item i { font-size:1.1rem; }
         .section-title { padding:16px 16px 8px; font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:700; }
         .card { background:var(--surface); border-radius:var(--radius); padding:16px; margin:0 16px 12px; box-shadow:var(--shadow); border:1px solid var(--border); }
-        .card-gold { border:2px solid var(--gold); }
         .btn { padding:10px 18px; border-radius:25px; border:none; font-weight:600; font-size:0.85rem; cursor:pointer; display:inline-flex; align-items:center; gap:6px; justify-content:center; font-family:inherit; }
         .btn:active { transform:scale(0.95); }
-        .btn-gold { background:var(--gold); color:#1a1a1a; }
+        .btn-gold { background:var(--gold); color:#1a1a1a; font-weight:700; }
         .btn-outline { background:transparent; border:1px solid var(--border); color:var(--text); }
         .btn-block { width:100%; }
         .btn-sm { padding:6px 12px; font-size:0.7rem; }
-        .btn-install { background:linear-gradient(135deg,#1a1a2e,#3d2c5e); color:white; border:2px solid var(--gold); font-size:1rem; padding:14px; animation:pulse 2s infinite; }
-        @keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(201,168,76,0.4)} 50%{box-shadow:0 0 0 15px rgba(201,168,76,0)} }
         .products-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; padding:0 16px 16px; }
         .product-card { background:var(--surface); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); border:1px solid var(--border); cursor:pointer; }
         .product-card:active { transform:scale(0.97); }
@@ -74,7 +61,6 @@
         .product-info { padding:10px; }
         .product-title { font-weight:600; font-size:0.8rem; margin-bottom:4px; }
         .product-price { font-weight:800; font-size:0.95rem; color:var(--gold-dark); margin-bottom:6px; }
-        .product-footer { display:flex; justify-content:space-between; font-size:0.65rem; color:var(--text-secondary); margin-bottom:6px; }
         .modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:200; display:flex; align-items:flex-end; justify-content:center; opacity:0; pointer-events:none; transition:opacity 0.3s; }
         .modal-overlay.open { opacity:1; pointer-events:auto; }
         .modal-sheet { background:var(--surface); border-radius:20px 20px 0 0; width:100%; max-width:480px; max-height:85vh; overflow-y:auto; padding:20px; transform:translateY(100%); transition:transform 0.3s; }
@@ -90,72 +76,52 @@
         .toggle-slider:before { content:""; position:absolute; height:18px; width:18px; left:3px; bottom:3px; background:white; border-radius:50%; transition:.3s; }
         input:checked+.toggle-slider { background:var(--gold); }
         input:checked+.toggle-slider:before { transform:translateX(20px); }
-        .hidden { display:none!important; }
-        .toast-msg { position:fixed; bottom:90px; left:50%; transform:translateX(-50%); background:var(--surface); color:var(--text); padding:10px 20px; border-radius:25px; box-shadow:0 10px 30px rgba(0,0,0,0.2); z-index:400; font-weight:600; font-size:0.85rem; white-space:nowrap; border:1px solid var(--border); }
-        .install-banner { background:linear-gradient(135deg,#1a1a2e,#3d2c5e); color:white; padding:14px 16px; display:flex; align-items:center; gap:12px; cursor:pointer; flex-shrink:0; border-bottom:2px solid var(--gold); }
-        .install-banner.hidden { display:none; }
-        .install-banner .icon { font-size:1.8rem; }
-        .install-banner .text { flex:1; font-weight:600; font-size:0.85rem; }
+        .status-badge { padding:4px 10px; border-radius:12px; font-size:0.65rem; font-weight:700; }
+        .status-pending { background:rgba(217,119,6,0.2); color:var(--warning); }
+        .status-approved { background:rgba(5,150,105,0.2); color:var(--success); }
+        .toast-msg { position:fixed; bottom:90px; left:50%; transform:translateX(-50%); background:var(--surface); color:var(--text); padding:10px 20px; border-radius:25px; box-shadow:0 10px 30px rgba(0,0,0,0.2); z-index:400; font-weight:600; font-size:0.85rem; white-space:nowrap; border:1px solid var(--border); animation:toastIn 0.3s ease; }
+        @keyframes toastIn { from{opacity:0;transform:translateX(-50%) translateY(20px);} to{opacity:1;transform:translateX(-50%) translateY(0);} }
+        .chat-bubble { background:var(--gold); color:#1a1a1a; padding:8px 14px; border-radius:18px 18px 18px 4px; max-width:80%; margin:4px 0; font-size:0.85rem; }
+        .chat-bubble.other { background:var(--surface); color:var(--text); border:1px solid var(--border); border-radius:18px 18px 4px 18px; margin-left:auto; }
+        .chat-input-wrap { display:flex; gap:8px; padding:12px; background:var(--surface); border-top:1px solid var(--border); }
+        .chat-input-wrap input { flex:1; padding:10px 14px; border:1px solid var(--border); border-radius:20px; background:var(--bg); color:var(--text); font-family:inherit; }
     </style>
 </head>
 <body>
 <div class="app-container" id="appContainer">
-    <!-- Install Banner at top -->
-    <div class="install-banner hidden" id="installBanner" onclick="installApp()">
-        <span class="icon">📲</span>
-        <span class="text">Tap to install SecondChance on your phone</span>
-        <button class="btn btn-gold btn-sm" onclick="event.stopPropagation();installApp()">Install</button>
-    </div>
-
     <div class="top-header">
         <div class="logo">Second<span>Chance</span></div>
         <div class="header-actions">
             <button class="icon-btn" onclick="openCart()">🛒<span class="cart-dot" id="cartDot"></span></button>
-            <button class="icon-btn" onclick="switchTab('profile')">👤</button>
+            <button class="icon-btn" onclick="showPage('profile')">👤</button>
         </div>
     </div>
-    
     <div class="search-bar">
         <div class="search-input-wrap">
             <input type="text" id="searchInput" placeholder="Search anything..." oninput="applySearch()">
             <button onclick="applySearch()">🔍</button>
         </div>
     </div>
-    
     <div class="main-scroll" id="mainScroll"></div>
-    
-    <div class="bottom-nav" id="bottomNav">
-        <button class="nav-item active" data-tab="home"><i class="fas fa-home"></i>Home</button>
-        <button class="nav-item" data-tab="large"><i class="fas fa-couch"></i>Large</button>
-        <button class="nav-item" data-tab="sell"><i class="fas fa-store"></i>Sell</button>
-        <button class="nav-item" data-tab="help"><i class="fab fa-whatsapp"></i>Help</button>
-        <button class="nav-item" data-tab="profile"><i class="fas fa-user"></i>Profile</button>
+    <div class="bottom-nav">
+        <button class="nav-item active" onclick="showPage('home')"><i class="fas fa-home"></i>Home</button>
+        <button class="nav-item" onclick="showPage('large')"><i class="fas fa-couch"></i>Large</button>
+        <button class="nav-item" onclick="showPage('sell')"><i class="fas fa-store"></i>Sell</button>
+        <button class="nav-item" onclick="showPage('info')"><i class="fas fa-info-circle"></i>Info</button>
+        <button class="nav-item" onclick="showPage('profile')"><i class="fas fa-user"></i>Profile</button>
     </div>
 </div>
 <div id="modalContainer"></div>
 
 <script>
-// ============ PWA MANIFEST ============
-const manifest = {
-    name:'SecondChance Marketplace',short_name:'SecondChance',
-    start_url:'.',display:'standalone',background_color:'#1a1a2e',theme_color:'#c9a84c',
-    icons:[{src:"data:image/svg+xml,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192"><rect width="192" height="192" rx="42" fill="#1a1a2e"/><text x="96" y="128" font-size="96" text-anchor="middle" fill="#c9a84c" font-family="serif" font-weight="bold">S</text></svg>'),sizes:'192x192',type:'image/svg+xml',purpose:'any maskable'},{src:"data:image/svg+xml,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="100" fill="#1a1a2e"/><text x="256" y="340" font-size="260" text-anchor="middle" fill="#c9a84c" font-family="serif" font-weight="bold">S</text></svg>'),sizes:'512x512',type:'image/svg+xml',purpose:'any maskable'}]
-};
-const ml=document.createElement('link');ml.rel='manifest';ml.href=URL.createObjectURL(new Blob([JSON.stringify(manifest)],{type:'application/json'}));document.head.appendChild(ml);
-
-if('serviceWorker' in navigator){
-    const sw='self.addEventListener("install",e=>self.skipWaiting());self.addEventListener("activate",e=>e.waitUntil(clients.claim()));self.addEventListener("fetch",e=>e.respondWith(fetch(e.request).catch(()=>caches.match(e.request))));';
-    navigator.serviceWorker.register(URL.createObjectURL(new Blob([sw],{type:'application/javascript'})));
-}
-
-// ============ DATA ============
 const MASTER_MPESA='0792091769',WHATSAPP='+254753711672',WHATSAPP_LINK='https://wa.me/254753711672';
 let currentUser=JSON.parse(localStorage.getItem('sc_user'))||null;
 let cart=JSON.parse(localStorage.getItem('sc_cart'))||[];
 let orders=JSON.parse(localStorage.getItem('sc_orders'))||[];
 let settings=JSON.parse(localStorage.getItem('sc_settings'))||{darkMode:false,notifications:true};
-let currentTab='home';
 let adminData=JSON.parse(localStorage.getItem('secondchance_admin_data'))||{payments:[],approvedSellers:[],products:[],orders:[]};
+let conversations=JSON.parse(localStorage.getItem('sc_chats'))||[];
+let currentPage='home';
 
 const imgs={
     fridge:'https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=300&h=300&fit=crop',
@@ -169,7 +135,8 @@ const imgs={
     stroller:'https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=300&h=300&fit=crop',
     drill:'https://images.unsplash.com/photo-1581147036324-1b3b7a2e1e0a?w=300&h=300&fit=crop',
     car:'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=300&h=300&fit=crop',
-    bed:'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=300&h=300&fit=crop'
+    bed:'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=300&h=300&fit=crop',
+    house:'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=300&h=300&fit=crop'
 };
 
 const items=[
@@ -183,127 +150,89 @@ const items=[
     {id:8,title:'Harry Potter Set',category:'books',price:5000,desc:'Hardcover',seller:'Books',rating:4.9,img:imgs.books,isLarge:false},
     {id:9,title:'Baby Stroller',category:'baby',price:12000,desc:'Travel',seller:'Parent',rating:4.4,img:imgs.stroller,isLarge:false},
     {id:10,title:'Power Drill',category:'tools',price:6500,desc:'18V',seller:'DIY',rating:4.5,img:imgs.drill,isLarge:false},
-    {id:11,title:'Toyota Vitz 2019',category:'automotive',price:850000,desc:'Low mileage',seller:'Auto',rating:4.0,img:imgs.car,isLarge:true},
-    {id:12,title:'Queen Bed Frame',category:'furniture',price:18000,desc:'Wooden',seller:'Furniture',rating:4.3,img:imgs.bed,isLarge:true}
+    {id:11,title:'Toyota Vitz 2019',category:'automotive',price:850000,desc:'Low mileage',seller:'AutoDealer',rating:4.0,img:imgs.car,isLarge:true},
+    {id:12,title:'Queen Bed Frame',category:'furniture',price:18000,desc:'Wooden',seller:'FurnitureHub',rating:4.3,img:imgs.bed,isLarge:true},
+    {id:13,title:'3BR House Kileleshwa',category:'property',price:15000000,desc:'Modern finishes',seller:'AgentKe',rating:4.2,img:imgs.house,isLarge:true},
+    {id:14,title:'Nike Air Max 90',category:'fashion',price:4500,desc:'Size 42',seller:'SneakerHead',rating:4.7,img:imgs.dress,isLarge:false}
 ];
 
-function save(){localStorage.setItem('sc_cart',JSON.stringify(cart));localStorage.setItem('sc_orders',JSON.stringify(orders));localStorage.setItem('sc_settings',JSON.stringify(settings));if(currentUser)localStorage.setItem('sc_user',JSON.stringify(currentUser));localStorage.setItem('secondchance_admin_data',JSON.stringify(adminData));}
+function save(){localStorage.setItem('sc_cart',JSON.stringify(cart));localStorage.setItem('sc_orders',JSON.stringify(orders));localStorage.setItem('sc_settings',JSON.stringify(settings));if(currentUser)localStorage.setItem('sc_user',JSON.stringify(currentUser));localStorage.setItem('secondchance_admin_data',JSON.stringify(adminData));localStorage.setItem('sc_chats',JSON.stringify(conversations));}
 function toast(m){let t=document.createElement('div');t.className='toast-msg';t.textContent=m;document.body.appendChild(t);setTimeout(()=>{t.style.opacity='0';t.style.transition='opacity 0.3s';setTimeout(()=>t.remove(),300);},2000);}
 function isVerified(){return currentUser&&adminData.approvedSellers.includes(currentUser.id);}
 function hasPaid(){return currentUser&&adminData.payments.some(p=>p.userId===currentUser.id&&p.status==='completed');}
 function isPending(){return currentUser&&adminData.payments.some(p=>p.userId===currentUser.id&&p.status==='pending');}
 function updateCartDot(){document.getElementById('cartDot').classList.toggle('show',cart.length>0);}
 
-// ============ TAB SWITCHING ============
-function switchTab(tab){
-    currentTab=tab;
-    const c=document.getElementById('mainScroll');
-    switch(tab){
-        case'home':c.innerHTML=renderHome();break;
-        case'large':c.innerHTML=renderLarge();break;
-        case'sell':c.innerHTML=renderSell();break;
-        case'help':c.innerHTML=renderHelp();break;
-        case'profile':c.innerHTML=renderProfile();break;
-    }
-    // Update active state on bottom nav buttons
+function showPage(page){
+    currentPage=page;const c=document.getElementById('mainScroll');
+    switch(page){case'home':c.innerHTML=renderHome();break;case'large':c.innerHTML=renderLarge();break;case'sell':c.innerHTML=renderSell();break;case'info':c.innerHTML=renderInfo();break;case'profile':c.innerHTML=renderProfile();break;}
     document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
-    const activeBtn=document.querySelector(`.nav-item[data-tab="${tab}"]`);
-    if(activeBtn)activeBtn.classList.add('active');
-    updateCartDot();
-    document.getElementById('mainScroll').scrollTop=0;
+    const pages=['home','large','sell','info','profile'];
+    document.querySelectorAll('.nav-item').forEach((btn,i)=>{if(pages[i]===page)btn.classList.add('active');});
+    updateCartDot();c.scrollTop=0;
 }
 
-// ============ BOTTOM NAV CLICK HANDLERS ============
-document.addEventListener('DOMContentLoaded',function(){
-    document.querySelectorAll('.nav-item').forEach(btn=>{
-        btn.addEventListener('click',function(){
-            const tab=this.getAttribute('data-tab');
-            if(tab)switchTab(tab);
-        });
-    });
-});
+function pc(item){return`<div class="product-card" onclick="viewItem(${item.id})"><div class="product-img" style="background-image:url('${item.img}');"></div><div class="product-info"><div class="product-title">${item.title}</div><div class="product-price">KSH ${item.price.toLocaleString()}</div><div style="font-size:0.65rem;color:var(--text-secondary);margin-bottom:6px;">${item.seller} • ⭐${item.rating}</div><button class="btn btn-gold btn-sm btn-block" onclick="event.stopPropagation();addToCart(${item.id})">+ Add</button></div></div>`;}
 
-function pc(item){return`<div class="product-card" onclick="viewItem(${item.id})"><div class="product-img" style="background-image:url('${item.img}');"></div><div class="product-info"><div class="product-title">${item.title}</div><div class="product-price">KSH ${item.price.toLocaleString()}</div><div class="product-footer"><span>⭐${item.rating}</span><span>${item.seller}</span></div><button class="btn btn-gold btn-sm btn-block" onclick="event.stopPropagation();addToCart(${item.id})">+ Add</button></div></div>`;}
-
-function renderHome(){
-    let f=items.filter(i=>!i.isLarge);
-    const t=(document.getElementById('searchInput')?.value||'').toLowerCase();
-    if(t)f=f.filter(i=>i.title.toLowerCase().includes(t)||i.desc.toLowerCase().includes(t));
-    let h=`<div style="text-align:center;padding:20px 16px 10px;">
-        <h3 style="font-family:'Playfair Display',serif;">📲 Get the App</h3>
-        <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:12px;">Install on your phone for the best experience</p>
-        <button class="btn btn-install btn-block" onclick="installApp()">
-            <i class="fas fa-download"></i> Download / Install App
-        </button>
-        <p style="font-size:0.7rem;color:var(--text-secondary);margin-top:6px;">Works on Android, iPhone & Desktop</p>
-    </div>`;
-    h+=`<div class="section-title">🔥 Trending Items</div><div class="products-grid">${f.map(pc).join('')}</div>`;
-    if(f.length===0)h='<div class="section-title">📭 No items found</div>';
-    return h;
-}
-
-function renderLarge(){return`<div class="section-title">🏠 Large Items</div><div class="products-grid">${items.filter(i=>i.isLarge).map(pc).join('')}</div>`;}
+function renderHome(){let f=items.filter(i=>!i.isLarge);const t=(document.getElementById('searchInput')?.value||'').toLowerCase();if(t)f=f.filter(i=>i.title.toLowerCase().includes(t)||i.desc.toLowerCase().includes(t));return`<div style="text-align:center;padding:20px 16px 10px;"><h3 style="font-family:'Playfair Display',serif;">📲 Get the App</h3><p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:12px;">Install on your phone</p><button class="btn btn-gold btn-block" onclick="installApp()"><i class="fas fa-download"></i> Download / Install App</button></div><div class="section-title">🔥 Trending Items</div><div class="products-grid">${f.map(pc).join('')}</div>`;}
+function renderLarge(){return`<div class="section-title">🏠 Large Items (Cars, Houses, Furniture)</div><div class="products-grid">${items.filter(i=>i.isLarge).map(pc).join('')}</div>`;}
 
 function renderSell(){
-    if(!currentUser)return`<div class="card" style="margin-top:20px;"><p>Login to sell items</p><button class="btn btn-gold btn-block" onclick="showLogin()">Login / Register</button></div>`;
-    if(isPending())return`<div class="card"><h3>⏳ Verification Pending</h3><p>Admin is reviewing your KSH 350 payment.</p><button class="btn btn-gold btn-block" onclick="window.open('${WHATSAPP_LINK}?text=Please verify my seller registration','_blank')">Contact Admin: ${WHATSAPP}</button></div>`;
-    if(!hasPaid())return`<div class="card card-gold"><h3>💰 Register as Seller</h3><p>KSH 350 to <strong>${MASTER_MPESA}</strong></p><button class="btn btn-gold btn-block" onclick="showRegPayment()">Pay KSH 350</button></div>`;
+    if(!currentUser)return`<div class="card" style="margin-top:20px;"><p>Please login to sell items</p><button class="btn btn-gold btn-block" onclick="showLogin()">Login / Register</button></div>`;
+    if(isPending())return`<div class="card"><h3>⏳ Verification Pending</h3><p>Admin is reviewing your KSH 350 payment.</p><button class="btn btn-gold btn-block" onclick="window.open('${WHATSAPP_LINK}','_blank')">Contact Admin</button></div>`;
+    if(!hasPaid())return`<div class="card card-gold"><h3>💰 Register as Seller</h3><p style="font-size:1.2rem;font-weight:800;">KSH 350 one-time fee</p><p>Send to <strong>${MASTER_MPESA}</strong> via M-Pesa</p><button class="btn btn-gold btn-block" onclick="showRegPayment()">💳 Pay KSH 350 Now</button></div>`;
     let mi=items.filter(i=>i.seller===currentUser.name);
-    return`<div class="card"><span class="status-badge status-approved">✅ Verified</span><p>Welcome, ${currentUser.name}!</p><button class="btn btn-gold btn-block" onclick="showListForm()">+ List New Item</button></div><div class="section-title">My Listings (${mi.length})</div>${mi.map(i=>`<div class="card">${i.title} - KSH ${i.price}</div>`).join('')}`;
+    return`<div class="card"><span class="status-badge status-approved">✅ Verified Seller</span><p>Welcome, ${currentUser.name}!</p><button class="btn btn-gold btn-block" onclick="showListForm()">+ List New Item</button></div><div class="section-title">📦 My Listings (${mi.length})</div>${mi.map(i=>`<div class="card" style="display:flex;gap:10px;align-items:center;"><div style="width:50px;height:50px;background-image:url(${i.img});background-size:cover;border-radius:8px;"></div><div style="flex:1;"><strong>${i.title}</strong><br>KSH ${i.price.toLocaleString()}</div></div>`).join('')||'<div class="card">No listings yet</div>'}`;
 }
 
-function renderHelp(){return`<div class="card" style="text-align:center;margin-top:20px;"><h3>💬 WhatsApp Help</h3><p>${WHATSAPP}</p><button class="btn btn-gold btn-block" onclick="window.open('${WHATSAPP_LINK}?text=Hello, I need help with SecondChance','_blank')">Chat Now</button></div><div class="card"><p>📧 support@secondchance.co.ke</p><p>💳 Pay to: ${MASTER_MPESA}</p></div>`;}
+function renderInfo(){
+    if(!currentUser)return`<div class="card" style="margin-top:20px;"><p>Login to see your information</p><button class="btn btn-gold btn-block" onclick="showLogin()">Login / Register</button></div>`;
+    let pendingPayments=adminData.payments.filter(p=>p.userId===currentUser.id&&p.status==='pending');
+    let pendingItems=items.filter(i=>i.seller===currentUser.name&&i.status==='pending');
+    return`<div class="section-title">📋 My Requests</div>
+    <div class="card"><h4>💳 Payment Status</h4>${hasPaid()?'<p class="status-approved">✅ Registration paid & verified</p>':isPending()?`<p class="status-pending">⏳ ${pendingPayments.length} payment(s) pending verification</p>`:'<p>Not yet registered as seller</p>'}</div>
+    <div class="card"><h4>📦 Pending Items</h4>${pendingItems.length?pendingItems.map(i=>`<div>${i.title} - KSH ${i.price} - <span class="status-badge status-pending">Pending</span></div>`).join(''):'<p>No pending items</p>'}</div>
+    <div class="card"><h4>💬 Need Help?</h4><button class="btn btn-gold btn-block" onclick="window.open('${WHATSAPP_LINK}','_blank')"><i class="fab fa-whatsapp"></i> Chat: ${WHATSAPP}</button></div>
+    <div class="card"><h4>📊 My Stats</h4><p>Orders placed: ${orders.filter(o=>o.buyer===currentUser.name).length}</p><p>Items sold: ${orders.filter(o=>o.sellerId===currentUser.id).length}</p></div>`;
+}
 
 function renderProfile(){
-    if(!currentUser)return`<div class="card" style="margin-top:20px;"><p>Login to see profile</p><button class="btn btn-gold btn-block" onclick="showLogin()">Login / Register</button></div>`;
-    return`<div class="card"><h3>👤 ${currentUser.name}</h3><p>Phone: ${currentUser.phone||'--'}</p><p>Seller: ${isVerified()?'<span class="status-badge status-approved">✅ Verified</span>':isPending()?'<span class="status-badge status-pending">⏳ Pending</span>':'Not registered'}</p></div>
-    <div class="card">
-        <div class="toggle-row"><span>🌙 Dark Mode</span><label class="toggle-switch"><input type="checkbox" ${settings.darkMode?'checked':''} onchange="toggleDark(this.checked)"><span class="toggle-slider"></span></label></div>
-        <div class="toggle-row"><span>🔔 Notifications</span><label class="toggle-switch"><input type="checkbox" ${settings.notifications?'checked':''} onchange="settings.notifications=this.checked;save()"><span class="toggle-slider"></span></label></div>
-        <button class="btn btn-outline btn-block" onclick="logout()">Logout</button>
-    </div>
-    <div class="card"><h4>📦 Recent Orders</h4>${orders.filter(o=>o.buyer===currentUser.name).slice(0,3).map(o=>`<div>#${o.id} - ${o.items.join(',')} - KSH ${o.total}</div>`).join('')||'None'}</div>`;
+    if(!currentUser)return`<div class="card" style="margin-top:20px;"><p>Please login</p><button class="btn btn-gold btn-block" onclick="showLogin()">Login / Register</button></div>`;
+    return`<div class="card"><h3>👤 ${currentUser.name}</h3><p>Phone: ${currentUser.phone||'--'}</p><p>Status: ${isVerified()?'<span class="status-badge status-approved">Verified Seller</span>':isPending()?'<span class="status-badge status-pending">Pending</span>':'Buyer'}</p></div>
+    <div class="card"><h4>⚙️ Settings</h4><div class="toggle-row"><span>🌙 Dark Mode</span><label class="toggle-switch"><input type="checkbox" ${settings.darkMode?'checked':''} onchange="toggleDark(this.checked)"><span class="toggle-slider"></span></label></div><div class="toggle-row"><span>🔔 Notifications</span><label class="toggle-switch"><input type="checkbox" ${settings.notifications?'checked':''} onchange="settings.notifications=this.checked;save()"><span class="toggle-slider"></span></label></div><button class="btn btn-outline btn-block" onclick="logout()">Logout</button></div>
+    <div class="card"><h4>💬 Messages</h4><button class="btn btn-gold btn-block" onclick="openChatList()">View Conversations (${conversations.length})</button></div>
+    <div class="card"><h4>📦 Orders</h4>${orders.filter(o=>o.buyer===currentUser.name).slice(0,3).map(o=>`<div style="padding:8px 0;border-bottom:1px solid var(--border);font-size:0.8rem;">#${o.id} - ${o.items.join(',')} - KSH ${o.total}</div>`).join('')||'None'}</div>`;
 }
 
-// ============ MODALS ============
-function showLogin(){document.getElementById('modalContainer').innerHTML=`<div class="modal-overlay open" onclick="if(event.target===this)closeModal()"><div class="modal-sheet"><div class="modal-handle"></div><h2>Create Account</h2><div class="form-group"><label>Full Name</label><input class="form-input" id="loginName"></div><div class="form-group"><label>Phone Number</label><input class="form-input" id="loginPhone"></div><button class="btn btn-gold btn-block" onclick="doLogin()">Register</button><button class="btn btn-outline btn-block" onclick="closeModal()">Cancel</button></div></div>`;}
-function doLogin(){const n=document.getElementById('loginName').value.trim();if(!n)return alert('Enter name');currentUser={id:Date.now(),name:n,phone:document.getElementById('loginPhone').value};save();closeModal();toast(`Welcome, ${n}!`);}
-function showRegPayment(){document.getElementById('modalContainer').innerHTML=`<div class="modal-overlay open" onclick="if(event.target===this)closeModal()"><div class="modal-sheet"><div class="modal-handle"></div><h2>📱 M-Pesa Payment</h2><div style="background:#1a1a1a;color:#4caf50;padding:16px;border-radius:12px;text-align:center;"><p>Send <strong>KSH 350</strong> to:</p><p style="font-size:1.5rem;font-weight:800;">${MASTER_MPESA}</p></div><div class="form-group"><label>M-Pesa Code</label><input class="form-input" id="mpesaCode" placeholder="QWE1234567"></div><button class="btn btn-gold btn-block" onclick="submitReg()">Submit</button><button class="btn btn-outline btn-block" onclick="closeModal()">Cancel</button></div></div>`;}
-function submitReg(){const c=document.getElementById('mpesaCode').value.trim();if(!c)return alert('Enter code');adminData.payments.push({id:'pm_'+Date.now(),userId:currentUser.id,userName:currentUser.name,phone:currentUser.phone,amount:350,method:'mpesa',code:c,status:'pending',date:new Date().toISOString()});save();closeModal();toast('Submitted! Awaiting verification.');}
-function showListForm(){document.getElementById('modalContainer').innerHTML=`<div class="modal-overlay open" onclick="if(event.target===this)closeModal()"><div class="modal-sheet"><div class="modal-handle"></div><h2>📸 List New Item</h2><div class="form-group"><label>Title</label><input class="form-input" id="sTitle"></div><div class="form-group"><label>Category</label><select class="form-select" id="sCategory"><option>kitchen</option><option>electronics</option><option>furniture</option><option>fashion</option><option>automotive</option></select></div><div class="form-group"><label>Price (KSH)</label><input class="form-input" type="number" id="sPrice"></div><div class="form-group"><label>Description</label><textarea class="form-textarea" id="sDesc"></textarea></div><button class="btn btn-gold btn-block" onclick="submitListing()">Submit</button><button class="btn btn-outline btn-block" onclick="closeModal()">Cancel</button></div></div>`;}
-function submitListing(){const t=document.getElementById('sTitle').value,p=parseInt(document.getElementById('sPrice').value);if(!t||!p)return alert('Fill required');const ni={id:Date.now(),title:t,category:document.getElementById('sCategory').value,price:p,desc:document.getElementById('sDesc').value,seller:currentUser.name,rating:5,img:imgs.fridge,status:'pending',isLarge:false};items.unshift(ni);adminData.products=adminData.products||[];adminData.products.push(ni);save();closeModal();toast('Listed! Pending review.');}
-function viewItem(id){const i=items.find(x=>x.id===id);if(!i)return;document.getElementById('modalContainer').innerHTML=`<div class="modal-overlay open" onclick="if(event.target===this)closeModal()"><div class="modal-sheet"><div class="modal-handle"></div><img src="${i.img}" style="width:100%;border-radius:12px;"><h2>${i.title}</h2><p style="font-size:1.5rem;font-weight:800;color:var(--gold-dark);">KSH ${i.price.toLocaleString()}</p><p>${i.desc}</p><p>Seller: ${i.seller} • ⭐${i.rating}</p><button class="btn btn-gold btn-block" onclick="addToCart(${i.id});closeModal();">Add to Cart</button><button class="btn btn-outline btn-block" onclick="closeModal()">Close</button></div></div>`;}
+function openChatList(){let h=`<div class="modal-overlay open" onclick="if(event.target===this)closeModal()"><div class="modal-sheet"><div class="modal-handle"></div><h2>💬 Conversations</h2>`;if(conversations.length===0)h+='<p>No conversations yet. Buy or sell an item to start chatting!</p>';else{conversations.forEach((conv,i)=>{h+=`<div class="card" onclick="openChat(${i})" style="cursor:pointer;"><strong>${conv.with}</strong><br><small>${conv.messages[conv.messages.length-1]?.text||'No messages'}</small></div>`;});}h+=`<button class="btn btn-outline btn-block" onclick="closeModal()">Close</button></div></div>`;document.getElementById('modalContainer').innerHTML=h;}
+function openChat(index){const conv=conversations[index];let h=`<div class="modal-overlay open" onclick="if(event.target===this)closeModal()"><div class="modal-sheet" style="display:flex;flex-direction:column;height:80vh;"><div class="modal-handle"></div><h2>💬 ${conv.with}</h2><div style="flex:1;overflow-y:auto;padding:10px;">`;conv.messages.forEach(m=>{h+=`<div class="chat-bubble ${m.from===currentUser.name?'':'other'}"><strong>${m.from}:</strong> ${m.text}</div>`;});h+=`</div><div class="chat-input-wrap"><input type="text" id="chatMsgInput" placeholder="Type a message..."><button class="btn btn-gold btn-sm" onclick="sendMessage(${index})">Send</button></div></div></div>`;document.getElementById('modalContainer').innerHTML=h;}
+function sendMessage(index){const msg=document.getElementById('chatMsgInput').value.trim();if(!msg)return;conversations[index].messages.push({from:currentUser.name,text:msg,time:new Date().toISOString()});save();openChat(index);}
+function startConversation(sellerName){if(!currentUser)return alert('Login first');let conv=conversations.find(c=>c.with===sellerName);if(!conv){conv={with:sellerName,messages:[{from:'system',text:'Conversation started',time:new Date().toISOString()}]};conversations.push(conv);}save();const idx=conversations.indexOf(conv);openChat(idx);}
 
-// ============ CART ============
-function openCart(){const t=cart.reduce((s,i)=>s+i.price,0),c=t>=10000?t*0.05:t*0.03;let h=`<div class="modal-overlay open" onclick="if(event.target===this)closeModal()"><div class="modal-sheet"><div class="modal-handle"></div><h2>🛒 Cart</h2>`;if(cart.length===0)h+=`<div style="text-align:center;padding:40px;"><p style="font-size:3rem;">🛍️</p><p>Cart is empty</p></div>`;else{cart.forEach(i=>{h+=`<div style="display:flex;gap:10px;padding:8px;background:var(--bg);border-radius:10px;margin-bottom:6px;"><div style="width:40px;height:40px;background-image:url(${i.img});background-size:cover;border-radius:6px;"></div><div style="flex:1;"><strong>${i.title}</strong><br>KSH ${i.price}</div><button onclick="removeFromCart(${i.cartId})">🗑</button></div>`;});h+=`<hr><p>Subtotal: KSH ${t}</p><p style="color:var(--gold);">Commission (${t>=10000?'5%':'3%'}): KSH ${c}</p><p>Seller gets: KSH ${(t-c).toFixed(2)}</p><button class="btn btn-gold btn-block" onclick="checkout()">Place Order</button>`;}h+=`<button class="btn btn-outline btn-block" onclick="closeModal()">Close</button></div></div>`;document.getElementById('modalContainer').innerHTML=h;}
+function showLogin(){document.getElementById('modalContainer').innerHTML=`<div class="modal-overlay open" onclick="if(event.target===this)closeModal()"><div class="modal-sheet"><div class="modal-handle"></div><h2>Create Account</h2><div class="form-group"><label>Full Name</label><input class="form-input" id="loginName"></div><div class="form-group"><label>Phone</label><input class="form-input" id="loginPhone"></div><button class="btn btn-gold btn-block" onclick="doLogin()">Register</button><button class="btn btn-outline btn-block" onclick="closeModal()">Cancel</button></div></div>`;}
+function doLogin(){const n=document.getElementById('loginName').value.trim();if(!n)return alert('Enter name');currentUser={id:Date.now(),name:n,phone:document.getElementById('loginPhone').value};save();closeModal();toast('Welcome!');showPage('sell');}
+function showRegPayment(){document.getElementById('modalContainer').innerHTML=`<div class="modal-overlay open" onclick="if(event.target===this)closeModal()"><div class="modal-sheet"><div class="modal-handle"></div><h2>M-Pesa Payment</h2><div style="background:#1a1a1a;color:#4caf50;padding:16px;border-radius:12px;text-align:center;"><p>Send KSH 350 to:</p><p style="font-size:1.5rem;font-weight:800;">${MASTER_MPESA}</p></div><div class="form-group"><label>M-Pesa Code</label><input class="form-input" id="mpesaCode" placeholder="QWE1234567"></div><button class="btn btn-gold btn-block" onclick="submitReg()">Submit</button><button class="btn btn-outline btn-block" onclick="closeModal()">Cancel</button></div></div>`;}
+function submitReg(){const c=document.getElementById('mpesaCode').value.trim();if(!c)return alert('Enter code');adminData.payments.push({id:'pm_'+Date.now(),userId:currentUser.id,userName:currentUser.name,phone:currentUser.phone,amount:350,method:'mpesa',code:c,status:'pending'});save();closeModal();toast('Submitted!');showPage('info');}
+function showListForm(){document.getElementById('modalContainer').innerHTML=`<div class="modal-overlay open" onclick="if(event.target===this)closeModal()"><div class="modal-sheet"><div class="modal-handle"></div><h2>List Item</h2><div class="form-group"><label>Title</label><input class="form-input" id="sTitle"></div><div class="form-group"><label>Category</label><select class="form-select" id="sCategory"><option>kitchen</option><option>electronics</option><option>furniture</option><option>fashion</option><option>automotive</option><option>sports</option><option>books</option><option>baby</option><option>pets</option><option>tools</option><option>property</option></select></div><div class="form-group"><label>Price (KSH)</label><input class="form-input" type="number" id="sPrice"></div><div class="form-group"><label>Description</label><textarea class="form-textarea" id="sDesc"></textarea></div><label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;"><input type="checkbox" id="sIsLarge"> Large item (car, house, furniture)</label><button class="btn btn-gold btn-block" onclick="submitListing()">Submit</button><button class="btn btn-outline btn-block" onclick="closeModal()">Cancel</button></div></div>`;}
+function submitListing(){const t=document.getElementById('sTitle').value,p=parseInt(document.getElementById('sPrice').value);if(!t||!p)return alert('Fill required');items.unshift({id:Date.now(),title:t,category:document.getElementById('sCategory').value,price:p,desc:document.getElementById('sDesc').value,seller:currentUser.name,rating:5,img:imgs.fridge,status:'pending',isLarge:document.getElementById('sIsLarge').checked});closeModal();toast('Listed! Pending review.');showPage('info');}
+function viewItem(id){const i=items.find(x=>x.id===id);if(!i)return;document.getElementById('modalContainer').innerHTML=`<div class="modal-overlay open" onclick="if(event.target===this)closeModal()"><div class="modal-sheet"><div class="modal-handle"></div><img src="${i.img}" style="width:100%;border-radius:12px;"><h2>${i.title}</h2><p style="font-size:1.5rem;color:var(--gold-dark);">KSH ${i.price.toLocaleString()}</p><p>Seller: ${i.seller} • ⭐${i.rating}</p><button class="btn btn-gold btn-block" onclick="addToCart(${i.id});closeModal();">Add to Cart</button><button class="btn btn-outline btn-block" onclick="startConversation('${i.seller}');closeModal();">💬 Chat with Seller</button><button class="btn btn-outline btn-block" onclick="closeModal()">Close</button></div></div>`;}
+
+function openCart(){const t=cart.reduce((s,i)=>s+i.price,0),c=t>=10000?t*0.05:t*0.03;let h=`<div class="modal-overlay open" onclick="if(event.target===this)closeModal()"><div class="modal-sheet"><div class="modal-handle"></div><h2>🛒 Cart</h2>`;if(cart.length===0)h+=`<p style="text-align:center;padding:40px;">Cart is empty</p>`;else{cart.forEach(i=>{h+=`<div style="display:flex;gap:10px;padding:8px;background:var(--bg);border-radius:10px;margin-bottom:6px;"><div style="width:40px;height:40px;background-image:url(${i.img});background-size:cover;border-radius:6px;"></div><div style="flex:1;"><strong>${i.title}</strong><br>KSH ${i.price}</div><button onclick="removeFromCart(${i.cartId})">🗑</button></div>`;});h+=`<hr><p>Total: KSH ${t}</p><p style="color:var(--gold);">Commission (${t>=10000?'5%':'3%'}): KSH ${c}</p><button class="btn btn-gold btn-block" onclick="checkout()">Place Order</button>`;}h+=`<button class="btn btn-outline btn-block" onclick="closeModal()">Close</button></div></div>`;document.getElementById('modalContainer').innerHTML=h;}
 function addToCart(id){const i=items.find(x=>x.id===id);if(!i)return;cart.push({...i,cartId:Date.now()});save();updateCartDot();toast('Added!');}
 function removeFromCart(cid){cart=cart.filter(i=>i.cartId!==cid);save();updateCartDot();openCart();}
-function checkout(){if(!currentUser){closeModal();showLogin();return;}if(cart.length===0)return;const t=cart.reduce((s,i)=>s+i.price,0),c=t>=10000?t*0.05:t*0.03;orders.push({id:Date.now(),buyer:currentUser.name,items:cart.map(i=>i.title),total:t,commission:c,date:new Date().toISOString()});adminData.orders=orders;cart=[];save();closeModal();updateCartDot();toast('Order placed!');}
-function logout(){currentUser=null;localStorage.removeItem('sc_user');cart=[];save();updateCartDot();switchTab('home');toast('Logged out');}
+function checkout(){if(!currentUser){closeModal();showLogin();return;}if(cart.length===0)return;const t=cart.reduce((s,i)=>s+i.price,0),c=t>=10000?t*0.05:t*0.03;orders.push({id:Date.now(),buyer:currentUser.name,sellerId:cart[0]?.sellerId,items:cart.map(i=>i.title),total:t,commission:c,date:new Date().toISOString()});adminData.orders=orders;if(cart[0]?.seller){startConversation(cart[0].seller);}cart=[];save();closeModal();updateCartDot();toast('Order placed!');}
+function logout(){currentUser=null;localStorage.removeItem('sc_user');cart=[];save();updateCartDot();showPage('home');toast('Logged out');}
 function toggleDark(v){settings.darkMode=v;document.body.classList.toggle('dark-mode',v);save();}
-function applySearch(){if(currentTab==='home'||currentTab==='large')switchTab(currentTab);}
+function applySearch(){if(currentPage==='home'||currentPage==='large')showPage(currentPage);}
 function closeModal(){document.getElementById('modalContainer').innerHTML='';}
 
-// ============ PWA INSTALL ============
 let deferredPrompt;
-window.addEventListener('beforeinstallprompt',(e)=>{e.preventDefault();deferredPrompt=e;document.getElementById('installBanner').classList.remove('hidden');});
-function installApp(){
-    if(deferredPrompt){
-        deferredPrompt.prompt();
-        deferredPrompt.userChoice.then((r)=>{if(r.outcome==='accepted')toast('App installed! 🎉');deferredPrompt=null;document.getElementById('installBanner').classList.add('hidden');});
-    }else{
-        if(/iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase()))alert('📱 To install:\n1. Tap the Share button\n2. Scroll down\n3. Tap "Add to Home Screen"');
-        else if(window.matchMedia('(display-mode:standalone)').matches)toast('Already installed!');
-        else alert('📱 To install:\nOpen Chrome menu (⋮) → "Install app"');
-    }
-}
-window.addEventListener('appinstalled',()=>{document.getElementById('installBanner').classList.add('hidden');toast('Installed! 🎉');});
+window.addEventListener('beforeinstallprompt',(e)=>{e.preventDefault();deferredPrompt=e;});
+function installApp(){if(deferredPrompt){deferredPrompt.prompt();deferredPrompt.userChoice.then(()=>{deferredPrompt=null;});}else{alert('Open in Chrome and tap Menu → Install app, or Share → Add to Home Screen on iPhone');}}
 
-// ============ INIT ============
 if(settings.darkMode)document.body.classList.add('dark-mode');
-switchTab('home');
+showPage('home');
 updateCartDot();
-console.log('✅ SecondChance Ready | Download button on Home page | All nav buttons working');
 </script>
 </body>
 </html>
